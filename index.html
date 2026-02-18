@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Afya Ibrahim — Aspiring Software Engineer</title>
+
+  <!-- Google Fonts: DM Serif Display for headings, DM Sans for body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --maroon:       #800000;
+      --rose:         #B76E79;
+      --rose-light:   #f2dfe1;
+      --rose-pale:    #fdf6f7;
+      --bg:           #F9F9F9;
+      --white:        #FFFFFF;
+      --text:         #333333;
+      --text-muted:   #777777;
+      --border:       #e8d5d7;
+      --shadow:       0 4px 24px rgba(128,0,0,0.07);
+      --shadow-hover: 0 8px 36px rgba(128,0,0,0.14);
+      --serif:        'DM Serif Display', Georgia, serif;
+      --sans:         'DM Sans', sans-serif;
+      --radius:       14px;
+      --transition:   0.28s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container { max-width: 1020px; margin: 0 auto; padding: 0 28px; }
+    section { padding: 88px 0; }
+
+    .section-label { font-family: var(--sans); font-weight: 600; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rose); margin-bottom: 10px; }
+    .section-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 2.8rem); color: var(--maroon); line-height: 1.2; margin-bottom: 48px; }
+
+    header {
+      background: var(--maroon);
+      background-image: radial-gradient(circle at 80% 20%, rgba(183,110,121,0.25) 0%, transparent 55%), radial-gradient(circle at 10% 90%, rgba(183,110,121,0.15) 0%, transparent 50%);
+      color: var(--white); padding: 0; position: relative; overflow: hidden;
+    }
+    header::before {
+      content: "A"; font-family: var(--serif); font-style: italic; font-size: clamp(220px, 30vw, 380px);
+      color: rgba(255,255,255,0.04); position: absolute; top: -40px; right: -30px; line-height: 1; pointer-events: none; user-select: none;
+    }
+    .hero-inner { max-width: 1020px; margin: 0 auto; padding: 100px 28px 90px; position: relative; z-index: 1; }
+    .hero-name { font-family: var(--serif); font-size: clamp(3rem, 8vw, 6rem); line-height: 1.0; letter-spacing: -0.01em; margin-bottom: 14px; animation: fadeSlideUp 0.7s 0.1s ease both; }
+    .hero-tagline { font-size: clamp(1.1rem, 2vw, 1.5rem); font-weight: 300; color: rgba(255,255,255,0.75); margin-bottom: 40px; animation: fadeSlideUp 0.7s 0.2s ease both; }
+    .hero-tagline em { font-style: italic; font-family: var(--serif); color: #f2b8be; }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; animation: fadeSlideUp 0.7s 0.3s ease both; }
+
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; border-radius: 100px; font-family: var(--sans); font-weight: 600; font-size: 0.88rem; letter-spacing: 0.03em; cursor: pointer; transition: var(--transition); border: none; }
+    .btn-primary { background: var(--white); color: var(--maroon); }
+    .btn-primary:hover { background: var(--rose-light); transform: translateY(-2px); }
+    .btn-ghost { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.5); }
+    .btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.8); transform: translateY(-2px); }
+    .hero-wave { display: block; width: 100%; margin-bottom: -2px; }
+
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(249,249,249,0.92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: 1020px; margin: 0 auto; padding: 0 28px; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+    .nav-logo { font-family: var(--serif); font-size: 1.15rem; color: var(--maroon); }
+    .nav-links { display: flex; list-style: none; gap: 28px; }
+    .nav-links a { font-size: 0.84rem; font-weight: 500; color: var(--text-muted); transition: color var(--transition); }
+    .nav-links a:hover { color: var(--maroon); }
+
+    #about { background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 64px; align-items: start; }
+    .about-accent { position: sticky; top: 90px; }
+    .about-initials { width: 100%; aspect-ratio: 1; max-width: 260px; background: var(--maroon); border-radius: var(--radius); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; margin-bottom: 22px; }
+    .about-initials-text { font-family: var(--serif); font-size: 5rem; color: rgba(255,255,255,0.15); line-height: 1; font-style: italic; }
+    .about-initials-full { font-family: var(--serif); font-size: 1.15rem; color: rgba(255,255,255,0.85); letter-spacing: 0.04em; }
+    .about-initials-sub { font-size: 0.75rem; font-weight: 500; color: var(--rose); letter-spacing: 0.1em; text-transform: uppercase; }
+    .about-story p { font-size: 1.05rem; line-height: 1.85; color: var(--text); margin-bottom: 20px; }
+    .about-pull { border-left: 3px solid var(--rose); padding-left: 20px; font-family: var(--serif); font-style: italic; font-size: 1.2rem !important; color: var(--maroon) !important; line-height: 1.6 !important; }
+
+    #skills { background: var(--rose-pale); }
+    .skills-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+    .skill-card { background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 24px 16px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; transition: var(--transition); cursor: default; }
+    .skill-card:hover { border-color: var(--rose); box-shadow: var(--shadow-hover); transform: translateY(-4px); }
+    .skill-icon { font-size: 1.8rem; line-height: 1; }
+    .skill-name { font-size: 0.82rem; font-weight: 600; color: var(--maroon); line-height: 1.3; }
+
+    #projects { background: var(--white); }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+    .project-card { background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 32px 28px; position: relative; overflow: hidden; transition: var(--transition); }
+    .project-card::after { content: ''; position: absolute; bottom: 0; right: 0; width: 80px; height: 80px; background: var(--rose-light); border-radius: 80px 0 0 0; opacity: 0; transition: opacity var(--transition); }
+    .project-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-5px); border-color: var(--rose); }
+    .project-card:hover::after { opacity: 1; }
+    .project-emoji { font-size: 2.2rem; margin-bottom: 14px; display: block; }
+    .project-number { font-family: var(--serif); font-style: italic; font-size: 0.85rem; color: var(--rose); margin-bottom: 6px; }
+    .project-title { font-family: var(--serif); font-size: 1.3rem; color: var(--maroon); margin-bottom: 12px; line-height: 1.3; }
+    .project-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; position: relative; z-index: 1; margin-bottom: 20px; }
+
+    /* Link buttons used in projects, courses, and internship */
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 20px;
+      background: var(--maroon);
+      color: var(--white);
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      transition: var(--transition);
+      position: relative;
+      z-index: 1;
+      border: 1.5px solid var(--maroon);
+    }
+    .link-btn:hover { background: transparent; color: var(--maroon); }
+    .link-btn svg { flex-shrink: 0; }
+
+    /* Certificate link — ghost style */
+    .cert-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+      padding: 6px 14px;
+      background: transparent;
+      color: var(--maroon);
+      border: 1.5px solid var(--maroon);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      transition: var(--transition);
+    }
+    .cert-btn:hover { background: var(--maroon); color: var(--white); }
+
+    #courses { background: var(--rose-pale); }
+    .courses-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .course-item { background: var(--white); border: 1.5px solid var(--border); border-radius: 10px; padding: 18px 22px; display: flex; flex-direction: column; gap: 4px; transition: var(--transition); }
+    .course-item:hover { border-color: var(--rose); transform: translateX(4px); }
+    .course-name { font-weight: 600; font-size: 0.9rem; color: var(--text); line-height: 1.4; }
+    .course-provider { font-size: 0.78rem; color: var(--rose); font-weight: 500; letter-spacing: 0.04em; }
+
+    #internship { background: var(--white); }
+    .internship-card { background: var(--maroon); background-image: radial-gradient(circle at 90% 10%, rgba(183,110,121,0.3) 0%, transparent 50%), radial-gradient(circle at 5% 95%, rgba(183,110,121,0.2) 0%, transparent 45%); border-radius: 20px; padding: 56px; color: var(--white); display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
+    .internship-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rose); margin-bottom: 12px; }
+    .internship-title { font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 2.4rem); margin-bottom: 18px; line-height: 1.25; }
+    .internship-desc { font-size: 1rem; color: rgba(255,255,255,0.8); line-height: 1.7; max-width: 560px; }
+    .internship-stats { display: flex; flex-direction: column; gap: 16px; flex-shrink: 0; }
+    .stat-badge { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 18px 24px; text-align: center; min-width: 120px; }
+    .stat-value { font-family: var(--serif); font-size: 2.2rem; line-height: 1; margin-bottom: 4px; }
+    .stat-label { font-size: 0.72rem; font-weight: 500; color: rgba(255,255,255,0.6); letter-spacing: 0.08em; text-transform: uppercase; }
+
+    footer { background: var(--text); color: rgba(255,255,255,0.65); padding: 52px 0; text-align: center; }
+    .footer-name { font-family: var(--serif); font-size: 1.8rem; color: var(--white); margin-bottom: 8px; }
+    .footer-tagline { font-size: 0.9rem; color: var(--rose); margin-bottom: 28px; font-weight: 500; }
+    .footer-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 32px; }
+    .footer-link { display: inline-flex; align-items: center; gap: 6px; padding: 9px 22px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 100px; font-size: 0.84rem; font-weight: 500; transition: var(--transition); }
+    .footer-link:hover { background: rgba(255,255,255,0.15); color: var(--white); }
+    .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.3); }
+
+    @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.08s; }
+    .reveal-delay-2 { transition-delay: 0.16s; }
+    .reveal-delay-3 { transition-delay: 0.24s; }
+    .reveal-delay-4 { transition-delay: 0.32s; }
+    .reveal-delay-5 { transition-delay: 0.40s; }
+    .reveal-delay-6 { transition-delay: 0.48s; }
+    .reveal-delay-7 { transition-delay: 0.56s; }
+    .reveal-delay-8 { transition-delay: 0.64s; }
+    .reveal-delay-9 { transition-delay: 0.72s; }
+
+    @media (max-width: 760px) {
+      section { padding: 64px 0; }
+      .about-grid { grid-template-columns: 1fr; gap: 36px; }
+      .about-accent { position: static; display: flex; align-items: center; gap: 20px; }
+      .about-initials { max-width: 110px; margin-bottom: 0; }
+      .about-initials-text { font-size: 2.8rem; }
+      .courses-grid { grid-template-columns: 1fr; }
+      .internship-card { grid-template-columns: 1fr; padding: 36px 28px; gap: 28px; }
+      .internship-stats { flex-direction: row; justify-content: flex-start; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 500px) {
+      .skills-grid { grid-template-columns: repeat(3, 1fr); }
+      .hero-inner { padding: 70px 22px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <span class="nav-logo">Afya Ibrahim</span>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#internship">Experience</a></li>
+        <li><a href="#courses">Courses</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header>
+    <div class="hero-inner">
+      <h1 class="hero-name">Afya Ibrahim</h1>
+      <p class="hero-tagline">Aspiring Software Engineer</p>
+      <div class="hero-cta">
+        <a href="#about" class="btn btn-primary">Read My Story</a>
+        <!-- Scrolls to the Projects section -->
+        <a href="#projects" class="btn btn-ghost">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/>
+          </svg>
+          Review My Projects
+        </a>
+      </div>
+    </div>
+    <svg class="hero-wave" viewBox="0 0 1440 48" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0 48L1440 48L1440 16C1200 0 960 32 720 24C480 16 240 48 0 32L0 48Z" fill="#FFFFFF"/>
+    </svg>
+  </header>
+
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-accent reveal">
+          <div class="about-initials">
+            <span class="about-initials-text">AI</span>
+            <span class="about-initials-full">Afya Ibrahim</span>
+            <span class="about-initials-sub">Software Engineer</span>
+          </div>
+        </div>
+        <div class="about-story">
+          <div class="section-label reveal">My Story</div>
+          <h2 class="section-title reveal" style="margin-bottom:28px;">From using tools <br>to wondering how they're built.</h2>
+          <p class="reveal">
+            I started in digital marketing, running campaigns and studying analytics. The more I used the tools, the more I found myself asking different questions: how does this tool work? Why is it designed this way? Could it be simpler?
+          </p>
+          <p class="reveal">
+            That curiosity pulled me toward software engineering. I wanted to understand what happens behind the screen. So I started learning to code. Python first. Then Git. Then building small projects late at night when I should have been sleeping.
+          </p>
+          <p class="reveal">
+            I'm not a professional yet. But I'm someone who notices when things could work better and wants to learn how to build them that way.
+          </p>
+          <p class="about-pull reveal">
+            Now I'm applying for Software Engineering because I want to understand the fundamentals: how code thinks, how systems scale, and how technology is truly built.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="container">
+      <div class="section-label reveal">Toolkit</div>
+      <h2 class="section-title reveal">Skills &amp; Strengths</h2>
+      <div class="skills-grid">
+        <div class="skill-card reveal reveal-delay-1"><span class="skill-icon">🐍</span><span class="skill-name">Python</span></div>
+        <div class="skill-card reveal reveal-delay-2"><span class="skill-icon">🔀</span><span class="skill-name">Git &amp; GitHub</span></div>
+        <div class="skill-card reveal reveal-delay-3"><span class="skill-icon">🌐</span><span class="skill-name">HTML &amp; CSS</span></div>
+        <div class="skill-card reveal reveal-delay-4"><span class="skill-icon">📊</span><span class="skill-name">Digital Marketing Strategy</span></div>
+        <div class="skill-card reveal reveal-delay-5"><span class="skill-icon">🤖</span><span class="skill-name">AI in Marketing</span></div>
+        <div class="skill-card reveal reveal-delay-6"><span class="skill-icon">📱</span><span class="skill-name">Meta Ads Manager</span></div>
+        <div class="skill-card reveal reveal-delay-7"><span class="skill-icon">✍️</span><span class="skill-name">Content Creation</span></div>
+        <div class="skill-card reveal reveal-delay-8"><span class="skill-icon">🧩</span><span class="skill-name">Problem Solving</span></div>
+        <div class="skill-card reveal reveal-delay-9"><span class="skill-icon">👥</span><span class="skill-name">Team Collaboration</span></div>
+        <div class="skill-card reveal reveal-delay-1"><span class="skill-icon">📈</span><span class="skill-name">Data Analytics</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <div class="section-label reveal">What I've Built</div>
+      <h2 class="section-title reveal">Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card reveal reveal-delay-1">
+          <span class="project-emoji">🐍</span>
+          <div class="project-number">Project 01</div>
+          <h3 class="project-title">Python 101: First Program</h3>
+          <p class="project-desc">Developed a functional Python guessing game from scratch, applying core concepts like loops, functions, and conditional logic. Established foundational skills in algorithmic thinking and code structure.</p>
+          <a href="https://guessing-game-web--afyaibrahima.replit.app/" target="_blank" class="link-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Play the Game
+          </a>
+        </div>
+        <div class="project-card reveal reveal-delay-2">
+          <span class="project-emoji">🔀</span>
+          <div class="project-number">Project 02</div>
+          <h3 class="project-title">Afya Travel Agency Website</h3>
+          <p class="project-desc">Designed and coded a responsive travel agency website using semantic HTML and modern CSS. Learned layout principles, styling techniques, and how to build user-facing web interfaces from the ground up.</p>
+          <a href="https://afyaibrahim.github.io/Afya-Travel-Agency/" target="_blank" class="link-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            Visit Travel Site
+          </a>
+        </div>
+        <div class="project-card reveal reveal-delay-3">
+          <span class="project-emoji">🌐</span>
+          <div class="project-number">Project 03</div>
+          <h3 class="project-title">Git Workflows Project</h3>
+          <p class="project-desc">Practiced real-world version control workflows including branching, merging, and resolving merge conflicts. Gained proficiency in collaborative coding practices essential for team-based development.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="internship">
+    <div class="container">
+      <div class="section-label reveal">Experience</div>
+      <h2 class="section-title reveal">Internship Highlight</h2>
+      <div class="internship-card reveal">
+        <div>
+          <div class="internship-label">Internship</div>
+          <h3 class="internship-title">Excelerate Digital Marketing Internship</h3>
+          <p style="font-size:0.9rem; font-weight:600; color:rgba(255,255,255,0.55); letter-spacing:0.04em; margin-bottom:18px; margin-top:-10px;">Social Media Analyst | Virtual Internship</p>
+          <p class="internship-desc">Analyzed campaign performance and data trends to support content decisions. Recognized for strong ownership, problem-solving, and consistent attention to detail. Developed skills in data analysis and pattern recognition. Worked collaboratively in a fast-paced team environment to deliver actionable insights.</p>
+          <a href="https://drive.google.com/file/d/1BO18Ve9zqglWYTjDPULkCssCBd2Bebq-/view?usp=sharing" target="_blank" style="display:inline-flex;align-items:center;gap:7px;margin-top:22px;padding:10px 22px;background:rgba(255,255,255,0.15);color:var(--white);border:1.5px solid rgba(255,255,255,0.4);border-radius:100px;font-size:0.82rem;font-weight:600;letter-spacing:0.03em;transition:var(--transition);" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            View Internship Report
+          </a>
+        </div>
+        <div class="internship-stats">
+          <div class="stat-badge"><div class="stat-value">90%</div><div class="stat-label">Overall Rating</div></div>
+          <div class="stat-badge"><div class="stat-value">98%</div><div class="stat-label">Peer Evaluation</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="courses">
+    <div class="container">
+      <div class="section-label reveal">Learning Path</div>
+      <h2 class="section-title reveal">Courses &amp; Certifications</h2>
+      <div class="courses-grid">
+        <div class="course-item reveal reveal-delay-1">
+          <span class="course-name">Crash Course on Python</span>
+          <span class="course-provider">Google</span>
+          <a href="https://coursera.org/share/2865662aec091f38429e86f08afc285c" target="_blank" class="cert-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            View Certificate
+          </a>
+        </div>
+        <div class="course-item reveal reveal-delay-2">
+          <span class="course-name">Introduction to Git and GitHub</span>
+          <span class="course-provider">Google</span>
+          <a href="https://coursera.org/share/40882698b9ec712ec68d616841561765" target="_blank" class="cert-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            View Certificate
+          </a>
+        </div>
+        <div class="course-item reveal reveal-delay-3">
+          <span class="course-name">Introduction to Software Engineering</span>
+          <span class="course-provider">IBM</span>
+          <a href="https://coursera.org/share/ac3f1dad889f68553e5313ddf7838273" target="_blank" class="cert-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            View Certificate
+          </a>
+        </div>
+        <div class="course-item reveal reveal-delay-4">
+          <span class="course-name">Python 101: Develop Your First Python Program</span>
+          <span class="course-provider">Coursera Project Network</span>
+          <a href="https://coursera.org/share/9c5187af053600d2ab10ffeb5a39056f" target="_blank" class="cert-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            View Certificate
+          </a>
+        </div>
+        <div class="course-item reveal reveal-delay-5">
+          <span class="course-name">Git for Developers: Managing Workflows</span>
+          <span class="course-provider">Coursera Project Network</span>
+          <a href="https://coursera.org/share/1e5a1b350b8025f21aa9891dfc2df805" target="_blank" class="cert-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            View Certificate
+          </a>
+        </div>
+        <div class="course-item reveal reveal-delay-6">
+          <span class="course-name">HTML and CSS: Building a Single-Page Website</span>
+          <span class="course-provider">Coursera Project Network</span>
+          <a href="https://coursera.org/share/b9781daa3e2e750c013b1f9dd7325ab6" target="_blank" class="cert-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            View Certificate
+          </a>
+        </div>
+        <div class="course-item reveal reveal-delay-7">
+          <span class="course-name">Meta Social Media Marketing Professional Certificate</span>
+          <span class="course-provider">Meta</span>
+          <a href="https://coursera.org/share/d8799614f461535c179f9573a101340c" target="_blank" class="cert-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            View Certificate
+          </a>
+        </div>
+        <div class="course-item reveal reveal-delay-8">
+          <span class="course-name">GenAI in Social Media Marketing</span>
+          <span class="course-provider">Meta</span>
+          <a href="https://coursera.org/share/8ce9fdf9ddf6564df6755e49611eb322" target="_blank" class="cert-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            View Certificate
+          </a>
+        </div>
+        <div class="course-item reveal reveal-delay-9">
+          <span class="course-name">AI Marketing Automation</span>
+          <span class="course-provider">LearnKartS</span>
+          <a href="https://coursera.org/share/fc7165cd90e89228c43dd7fd54935537" target="_blank" class="cert-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            View Certificate
+          </a>
+        </div>
+        <div class="course-item reveal reveal-delay-1">
+          <span class="course-name">Artificial Intelligence in Marketing</span>
+          <span class="course-provider">University of Virginia</span>
+          <a href="https://coursera.org/share/d2312b7aedcf8f9d238fcb7a03b1f755" target="_blank" class="cert-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            View Certificate
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-name">Afya Ibrahim</div>
+      <div class="footer-tagline">Aspiring Software Engineer</div>
+      <div class="footer-links">
+      <p class="footer-copy">© 2026 Afya Ibrahim. Built with curiosity and late nights.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    })();
+  </script>
+
+</body>
+</html>
